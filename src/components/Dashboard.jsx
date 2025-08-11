@@ -33,13 +33,3 @@
 // };
 
 // export default Dashboard;
-
-
-position: 'fixed',
-bottom: '20px',
-left: '20px',
-background-color: '#e53935',
-padding: '12px',
-border-radius: '8px',
-cursor: 'pointer',
-transition: 'background-color 0.3s ease',

@@ -103,8 +103,8 @@ const SessionList = ({ onSelect, selectedSessionId }) => {
   useEffect(() => {
     const fetchSessions = async () => {
       try {
-        const escalatedRes = await axios.get('http://localhost:5000/api/chat/escalated-sessions');
-        const unreadRes = await axios.get('http://localhost:5000/api/chat/unread/sessions');
+        const escalatedRes = await axios.get('http://ec2-3-6-152-103.ap-south-1.compute.amazonaws.com:5000/api/chat/escalated-sessions');
+        const unreadRes = await axios.get('http://ec2-3-6-152-103.ap-south-1.compute.amazonaws.com:5000/api/chat/unread/sessions');
 
         const escalatedSessions = escalatedRes.data;
 

@@ -290,7 +290,7 @@ const ChatWindow = ({ sessionId }) => {
     };
 
     try {
-      await axios.post(`http://localhost:5000/api/chat/message`, newMessage);
+      await axios.post(`http://ec2-3-6-152-103.ap-south-1.compute.amazonaws.com:5000/api/chat/message`, newMessage);
       // setMessages((prev) => [...prev, newMessage]);
       setInput("");
     } catch (err) {
