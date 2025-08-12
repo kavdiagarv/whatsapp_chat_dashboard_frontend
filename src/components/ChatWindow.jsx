@@ -236,7 +236,7 @@ import io from "socket.io-client";
 import moment from 'moment';
 
 
-const socket = io("http://localhost:5000"); // Change to your WebSocket server URL
+const socket = io("http://ec2-3-6-152-103.ap-south-1.compute.amazonaws.com:5000"); // Change to your WebSocket server URL
 
 const ChatWindow = ({ sessionId }) => {
   const [messages, setMessages] = useState([]);
@@ -252,7 +252,7 @@ const ChatWindow = ({ sessionId }) => {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/chat/${sessionId}/messages`);
+        const res = await axios.get(`http://ec2-3-6-152-103.ap-south-1.compute.amazonaws.com:5000/api/chat/${sessionId}/messages`);
         setMessages(res.data);
       } catch (err) {
         console.error("Error fetching messages:", err);
