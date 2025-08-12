@@ -7,7 +7,8 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     allowedHosts: [
-      'ec2-3-6-152-103.ap-south-1.compute.amazonaws.com'
+      // 'ec2-3-6-152-103.ap-south-1.compute.amazonaws.com'
+      'ecofyndsupport.platinum-infotech.com'
     ],
     port: 5173
   }
