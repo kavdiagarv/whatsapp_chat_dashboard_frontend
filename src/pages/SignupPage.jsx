@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'; // added Link
 import { Eye, EyeClosed } from 'lucide-react';
 import axios from 'axios';
 import { toast } from "react-toastify";
+import api from '../hooks/useApi';
 
 
 const SignupPage = () => {
@@ -20,7 +21,7 @@ const SignupPage = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://ec2-3-6-152-103.ap-south-1.compute.amazonaws.com:5000/api/chat/create-agent', {
+      const res = await api.post('/create-agent', {
         name,
         email,
         password,

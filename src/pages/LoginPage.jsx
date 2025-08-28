@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Eye, EyeClosed } from 'lucide-react';
-import axios from 'axios';
+// import axios from 'axios';
 import { toast } from 'react-toastify';
+import api from '../hooks/useApi';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -19,7 +20,7 @@ const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://ec2-3-6-152-103.ap-south-1.compute.amazonaws.com:5000/api/chat/login', {
+      const res = await api.post('/login', {
         email,
         password,
       });
