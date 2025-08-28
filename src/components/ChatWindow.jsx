@@ -3,8 +3,9 @@ import axios from "axios";
 import io from "socket.io-client";
 import moment from "moment";
 import { LockClosedIcon } from "@heroicons/react/24/solid"; 
+import api from "../hooks/useApi";
 
-const socket = io("https://ecofyndsupport.platinum-infotech.com/api/chat"); // Change to your WebSocket server URL
+const socket = io("http://ecofyndsupport.platinum-infotech.com:5000"); // Change to your WebSocket server URL
 
 const ChatWindow = ({ sessionId }) => {
   const [messages, setMessages] = useState([]);
@@ -16,7 +17,7 @@ const ChatWindow = ({ sessionId }) => {
   useEffect(() => {
     const fetchArchived = async () => {
       try {
-        const res = await axios.get("https://ecofyndsupport.platinum-infotech.com/api/chat/archive"); 
+        const res = await api.get("/archive"); 
         const { bulkOrders = [], escalated = [] } = res.data;
 
         const ids = [
@@ -45,8 +46,8 @@ const ChatWindow = ({ sessionId }) => {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const res = await axios.get(
-          `https://ecofyndsupport.platinum-infotech.com/api/chat/${sessionId}/messages`
+        const res = await api.get(
+          `/${sessionId}/messages`
         );
         setMessages(res.data);
       } catch (err) {
@@ -85,7 +86,7 @@ const ChatWindow = ({ sessionId }) => {
     };
 
     try {
-      await axios.post(`https://ecofyndsupport.platinum-infotech.com/api/chat/message`, newMessage);
+      await api.post(`/message`, newMessage);
       setInput("");
     } catch (err) {
       console.error("Failed to send message", err);

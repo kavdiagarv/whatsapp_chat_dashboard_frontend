@@ -227,8 +227,8 @@ const Dashboard = () => {
     const fetchUnread = async () => {
       try {
         const [escRes, bulkRes] = await Promise.all([
-          fetch('https://ecofyndsupport.platinum-infotech.com/api/chat/unread/sessions').then(r => r.json()),
-          fetch('https://ecofyndsupport.platinum-infotech.com/api/chat/bulk-orders/unread').then(r => r.json())
+          fetch('http://ecofyndsupport.platinum-infotech.com:5000/api/chat/unread/sessions').then(r => r.json()),
+          fetch('http://ecofyndsupport.platinum-infotech.com:5000/api/chat/bulk-orders/unread').then(r => r.json())
         ]);
 
         const escTotal = Array.isArray(escRes)

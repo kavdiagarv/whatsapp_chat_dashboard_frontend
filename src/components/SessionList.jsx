@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import api from "../hooks/useApi";
 
 const SessionList = ({ type, onSelect, selectedSessionId }) => {
   const [sessions, setSessions] = useState([]);
@@ -16,11 +17,11 @@ const SessionList = ({ type, onSelect, selectedSessionId }) => {
       try {
         if (type === "escalated") {
           // Escalated + unread
-          const escalatedRes = await axios.get(
-            "https://ecofyndsupport.platinum-infotech.com/api/chat/escalated-sessions"
+          const escalatedRes = await api.get(
+            "/escalated-sessions"
           );
-          const unreadRes = await axios.get(
-            "https://ecofyndsupport.platinum-infotech.com/api/chat/unread/sessions"
+          const unreadRes = await api.get(
+            "/unread/sessions"
           );
 
           const unreadMap = {};
@@ -36,11 +37,11 @@ const SessionList = ({ type, onSelect, selectedSessionId }) => {
           setSessions(mergedSessions);
         } else if (type === "bulk") {
           // Bulk + unread
-          const bulkRes = await axios.get(
-            "https://ecofyndsupport.platinum-infotech.com/api/chat/bulk-orders"
+          const bulkRes = await api.get(
+            "/bulk-orders"
           );
-          const bulkUnreadRes = await axios.get(
-            "https://ecofyndsupport.platinum-infotech.com/api/chat/bulk-orders/unread"
+          const bulkUnreadRes = await api.get(
+            "/bulk-orders/unread"
           );
 
           const unreadMap = {};
@@ -56,7 +57,7 @@ const SessionList = ({ type, onSelect, selectedSessionId }) => {
           setSessions(mergedBulk);
         } else if (type === "archive") {
           // Single API that returns both lists
-          const res = await axios.get("https://ecofyndsupport.platinum-infotech.com/api/chat/archive");
+          const res = await api.get("/archive");
           // Expected shape: { escalated: [...], bulkOrders: [...] }
           setArchiveData(res.data || { escalated: [], bulkOrders: [] });
         }
