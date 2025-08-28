@@ -17,10 +17,10 @@ const SessionList = ({ type, onSelect, selectedSessionId }) => {
         if (type === "escalated") {
           // Escalated + unread
           const escalatedRes = await axios.get(
-            "http://ec2-3-6-152-103.ap-south-1.compute.amazonaws.com:5000/api/chat/escalated-sessions"
+            "https://ecofyndsupport.platinum-infotech.com/api/chat/escalated-sessions"
           );
           const unreadRes = await axios.get(
-            "http://ec2-3-6-152-103.ap-south-1.compute.amazonaws.com:5000/api/chat/unread/sessions"
+            "https://ecofyndsupport.platinum-infotech.com/api/chat/unread/sessions"
           );
 
           const unreadMap = {};
@@ -37,10 +37,10 @@ const SessionList = ({ type, onSelect, selectedSessionId }) => {
         } else if (type === "bulk") {
           // Bulk + unread
           const bulkRes = await axios.get(
-            "http://ec2-3-6-152-103.ap-south-1.compute.amazonaws.com:5000/api/chat/bulk-orders"
+            "https://ecofyndsupport.platinum-infotech.com/api/chat/bulk-orders"
           );
           const bulkUnreadRes = await axios.get(
-            "http://ec2-3-6-152-103.ap-south-1.compute.amazonaws.com:5000/api/chat/bulk-orders/unread"
+            "https://ecofyndsupport.platinum-infotech.com/api/chat/bulk-orders/unread"
           );
 
           const unreadMap = {};
@@ -56,7 +56,7 @@ const SessionList = ({ type, onSelect, selectedSessionId }) => {
           setSessions(mergedBulk);
         } else if (type === "archive") {
           // Single API that returns both lists
-          const res = await axios.get("http://ec2-3-6-152-103.ap-south-1.compute.amazonaws.com:5000/api/chat/archive");
+          const res = await axios.get("https://ecofyndsupport.platinum-infotech.com/api/chat/archive");
           // Expected shape: { escalated: [...], bulkOrders: [...] }
           setArchiveData(res.data || { escalated: [], bulkOrders: [] });
         }

@@ -4,7 +4,7 @@ import io from "socket.io-client";
 import moment from "moment";
 import { LockClosedIcon } from "@heroicons/react/24/solid"; 
 
-const socket = io("http://ec2-3-6-152-103.ap-south-1.compute.amazonaws.com:5000"); // Change to your WebSocket server URL
+const socket = io("https://ecofyndsupport.platinum-infotech.com/api/chat"); // Change to your WebSocket server URL
 
 const ChatWindow = ({ sessionId }) => {
   const [messages, setMessages] = useState([]);
@@ -16,7 +16,7 @@ const ChatWindow = ({ sessionId }) => {
   useEffect(() => {
     const fetchArchived = async () => {
       try {
-        const res = await axios.get("http://ec2-3-6-152-103.ap-south-1.compute.amazonaws.com:5000/api/chat/archive"); 
+        const res = await axios.get("https://ecofyndsupport.platinum-infotech.com/api/chat/archive"); 
         const { bulkOrders = [], escalated = [] } = res.data;
 
         const ids = [
@@ -46,7 +46,7 @@ const ChatWindow = ({ sessionId }) => {
     const fetchMessages = async () => {
       try {
         const res = await axios.get(
-          `http://ec2-3-6-152-103.ap-south-1.compute.amazonaws.com:5000/api/chat/${sessionId}/messages`
+          `https://ecofyndsupport.platinum-infotech.com/api/chat/${sessionId}/messages`
         );
         setMessages(res.data);
       } catch (err) {
@@ -85,7 +85,7 @@ const ChatWindow = ({ sessionId }) => {
     };
 
     try {
-      await axios.post(`http://ec2-3-6-152-103.ap-south-1.compute.amazonaws.com:5000/api/chat/message`, newMessage);
+      await axios.post(`https://ecofyndsupport.platinum-infotech.com/api/chat/message`, newMessage);
       setInput("");
     } catch (err) {
       console.error("Failed to send message", err);
